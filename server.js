@@ -17,5 +17,5 @@ if (cluster.isMaster) {
 } else {
   var app = express();
   app.use(express.static(path.join(__dirname, '/dist')));
-  app.listen(8080 || process.env.PORT);
+  app.listen(process.env.PORT || 8080);
 }
