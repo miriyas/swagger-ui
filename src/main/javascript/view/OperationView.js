@@ -166,7 +166,23 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
         id: this.parentId + '_' + this.nickname
       };
     }
+
+    contentTypeModel = {
+      isParam: false
+    };
+    contentTypeModel.consumes = this.model.consumes;
+    contentTypeModel.produces = this.model.produces;
+
     $(this.el).html(Handlebars.templates.operation(this.model));
+
+    ref4 = this.model.parameters;
+    for (p = 0, len3 = ref4.length; p < len3; p++) {
+      param = ref4[p];
+      this.addParameter(param, contentTypeModel.consumes);
+      if (param.paramType === 'body' || param.in === 'body') {
+        this.addBodyModel(param)
+      }
+    }
     if (signatureModel) {
       responseSignatureView = new SwaggerUi.Views.SignatureView({
         model: signatureModel,
@@ -178,14 +194,9 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
       $('.model-signature', $(this.el)).append(responseSignatureView.render().el);
     } else {
       this.model.responseClassSignature = 'string';
-      $('.model-signature', $(this.el)).html(this.model.type);
+      $('.model-signature', $(this.el)).append(this.model.type);
     }
 
-    contentTypeModel = {
-      isParam: false
-    };
-    contentTypeModel.consumes = this.model.consumes;
-    contentTypeModel.produces = this.model.produces;
     ref3 = this.model.parameters;
     for (n = 0, len2 = ref3.length; n < len2; n++) {
       param = ref3[n];
@@ -215,16 +226,6 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
 
     $('.response-content-type', $(this.el)).append(responseContentTypeView.render().el);
 
-    ref4 = this.model.parameters;
-    for (p = 0, len3 = ref4.length; p < len3; p++) {
-      param = ref4[p];
-      this.addParameter(param, contentTypeModel.consumes);
-      if (param.paramType === 'body' || param.in === 'body') {
-        this.addBodyModel(param)
-      }
-    }
-
-
     ref5 = this.model.responseMessages;
     for (q = 0, len4 = ref5.length; q < len4; q++) {
       statusCode = ref5[q];
@@ -252,12 +253,29 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
   addParameter: function (param, consumes) {
     // Render a parameter
     param.consumes = consumes;
+    // Copy this param JSON spec so that it will be available for JsonEditor
+    if(param.schema){
+      $.extend(true, param.schema, this.model.definitions[param.type]);
+      param.schema.definitions = this.model.definitions;
+      // This is required for JsonEditor to display the root properly
+      if(!param.schema.type){
+        param.schema.type = 'object';
+      }
+      // This is the title that will be used by JsonEditor for the root
+      // Since we already display the parameter's name in the Parameter column
+      // We set this to space, we can't set it to null or space otherwise JsonEditor
+      // will replace it with the text "root" which won't look good on screen
+      if(!param.schema.title){
+        param.schema.title = ' ';
+      }
+    }
     var paramView = new SwaggerUi.Views.ParameterView({
       model: param,
       tagName: 'div',
       className: 'parameter-item',
-      readOnly: this.model.isReadOnly
-    });
+      readOnly: this.model.isReadOnly,
+      swaggerOptions: this.options.swaggerOptions
+  });
     $('.operation-params', $(this.el)).append(paramView.render().el);
   },
 
@@ -280,7 +298,7 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
     }
     form = $('.sandbox', $(this.el));
     error_free = true;
-    form.find('input.required').each(function () {
+    form.find('input.required:visible').each(function () {
       $(this).removeClass('error');
       if (jQuery.trim($(this).val()) === '') {
         $(this).addClass('error');
@@ -340,6 +358,14 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
           map[o.name] = val;
         }
       }
+      var pi;
+      for(pi = 0; pi < this.model.parameters.length; pi++){
+        var p = this.model.parameters[pi];
+        if( p.jsonEditor && p.jsonEditor.isEnabled()){
+          var json = p.jsonEditor.getValue();
+          map[p.name] = JSON.stringify(json);
+        }
+      }
       opts.responseContentType = $('div select[name=responseContentType]', $(this.el)).val();
       opts.requestContentType = $('div select[name=parameterContentType]', $(this.el)).val();
       $(".submit", $(this.el)).button("loading");
@@ -396,7 +422,7 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
     this.invocationUrl = this.model.supportHeaderParams() ? (headerParams = this.model.getHeaderParams(map), delete headerParams['Content-Type'], this.model.urlify(map, false)) : this.model.urlify(map, true);
     $('.request_url', $(this.el)).html('<pre></pre>');
     $('.request_url pre', $(this.el)).text(this.invocationUrl);
-    
+
     var clientAuths = window.swaggerUi.api.clientAuthorizations;
     if (typeof clientAuths !== 'undefined' && typeof(clientAuths.authz) !== 'undefined') {
       _.forEach(clientAuths.authz, function(auth, key) {

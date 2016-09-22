@@ -1,4 +1,29 @@
 'use strict';
+/*
+ * [TODO] defaultProperties is not take in the required properties into consideration, this implementation respects the specs of JSON Editor v0.7.22
+  {
+   {
+     "type": "object",
+     "properties": {
+     "name": {"type": "string"},
+     "age": {"type": "integer"}
+   },
+   defaultProperties": ["name"]
+  }
+ */
+function setDefaultProperties(obj) {
+  if (obj instanceof Object) {
+    for (var k in obj){
+      if(obj.hasOwnProperty("type") && obj.type == "object") {
+        obj.defaultProperties = obj.required ? obj.required : [];
+      }
+      // recursive call to setDefaultProperties
+      setDefaultProperties( obj[k] );
+    }
+  } else {
+    // not an Object, break the recursion.
+  };
+}
 
 SwaggerUi.Views.ParameterView = Backbone.View.extend({
   initialize: function(){
@@ -45,7 +70,47 @@ SwaggerUi.Views.ParameterView = Backbone.View.extend({
     var template = this.template();
     $(this.el).html(template(this.model));
 
+    var signatureModel = {
+      sampleJSON: this.model.sampleJSON,
+      isParam: true,
+      signature: this.model.signature,
+      defaultRendering: this.model.defaultRendering
+    };
+
     var isParam = false;
+
+    if( this.options.swaggerOptions.jsonEditor && this.model.isBody && this.model.schema){
+      var jsonEditorOptions = this.options.swaggerOptions.jsonEditorOptions;
+      var $self = $(this.el);
+      if (jsonEditorOptions && jsonEditorOptions.noDefaultProperties) setDefaultProperties(this.model.schema);
+      this.model.jsonEditor =
+        /* global JSONEditor */
+          new JSONEditor($('.editor_holder', $self)[0],
+              {schema: this.model.schema, startval : this.model.default,
+                ajax:true,
+                disable_properties:jsonEditorOptions && jsonEditorOptions.disableProperties,
+                disable_edit_json:jsonEditorOptions && jsonEditorOptions.disableEditJson,
+                remove_empty_properties:jsonEditorOptions && jsonEditorOptions.removeEmptyProperties,
+                iconlib: 'swagger' });
+      // This is so that the signature can send back the sample to the json editor
+      // TODO: SignatureView should expose an event "onSampleClicked" instead
+      signatureModel.jsonEditor = this.model.jsonEditor;
+      $('.body-textarea', $self).hide();
+      $('.editor_holder', $self).show();
+      $('.parameter-content-type', $self)
+        .change(function(e){
+          if(e.target.value === 'application/xml'){
+            $('.body-textarea', $self).show();
+            $('.editor_holder', $self).hide();
+            this.model.jsonEditor.disable();
+          }
+          else {
+            $('.body-textarea', $self).hide();
+            $('.editor_holder', $self).show();
+            this.model.jsonEditor.enable();
+          }
+        });
+    }
 
     if (this.model.isBody) {
       isParam = true;

@@ -176,7 +176,7 @@ this["Handlebars"]["templates"]["main"] = Handlebars.template({"1":function(dept
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.info : depth0)) != null ? stack1.version : stack1), depth0))
     + "\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "<div id=\"swagger_sidebar\">\n    <div class=\"sticky-nav-placeholder\">\n        <div class=\"sticky-nav\">\n            <div class=\"mobile-nav\">\n                <span class=\"select-label\">API Reference: </span><span data-selected-value></span>\n            </div>\n\n            <div class=\"token-generator hide\">\n                <span data-close class=\"icon-budicon-471\"></span>\n                <label for=\"input-api-token\">Url</label>\n                <input type=\"text\" autocorrect=\"off\" class=\"form-control\" id=\"input_baseUrl\"\n                       placeholder=\"http://example.com/api\">\n\n                <div class=\"scope-selector\">\n                    <label for=\"scopes\">Token</label>\n\n                    <div class=\"area controls\">\n                        <input type=\"text\" autocorrect=\"off\" class=\"form-control\" id=\"input_apiKey\"\n                               placeholder=\"Enter api key or token\">\n                    </div>\n\n                    <div class=\"area cta\">\n                        <div data-add-scope id=\"explore\" class=\"btn\"><span class=\"icon-budicon-519\"></span>\n                        </div>\n                    </div>\n                </div>\n\n            </div>\n            <div data-navigator>\n                <div data-resource=\"\" label=\"Tools\">\n                    <div class=\"item\" data-tg-switch=\"\">Swagger resource <span class=\"status\"></span></div>\n                </div>\n                <div id=\"resources_nav\">\n                </div>\n            </div>\n\n            <p class=\"changes-disclaimer\">\n                <span class='info' id='api_info'>\n";
+  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "<div id=\"swagger_sidebar\">\n    <div class=\"sticky-nav-placeholder\">\n        <div class=\"sticky-nav\">\n            <div class=\"mobile-nav\">\n                <span class=\"select-label\">API Reference: </span><span data-selected-value></span>\n            </div>\n\n            <div class=\"token-generator hide\">\n                <span data-close class=\"icon-budicon-471\"></span>\n                <label for=\"input-api-token\">Url</label>\n                <input type=\"text\" autocorrect=\"off\" class=\"ui-form-control\" id=\"input_baseUrl\"\n                       placeholder=\"http://example.com/api\">\n\n                <div class=\"scope-selector\">\n                    <label for=\"scopes\">Token</label>\n\n                    <div class=\"area controls\">\n                        <input type=\"text\" autocorrect=\"off\" class=\"ui-form-control\" id=\"input_apiKey\"\n                               placeholder=\"Enter api key or token\">\n                    </div>\n\n                    <div class=\"area cta\">\n                        <div data-add-scope id=\"explore\" class=\"btn\"><span class=\"icon-budicon-519\"></span>\n                        </div>\n                    </div>\n                </div>\n\n            </div>\n            <div data-navigator>\n                <div data-resource=\"\" label=\"Tools\">\n                    <div class=\"item\" data-tg-switch=\"\">Swagger resource <span class=\"status\"></span></div>\n                </div>\n                <div id=\"resources_nav\">\n                </div>\n            </div>\n\n            <p class=\"changes-disclaimer\">\n                <span class='info' id='api_info'>\n";
   stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.info : depth0), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   buffer += "\n                </span>\n\n                <span class='info' id='api_info'>\n";
@@ -348,7 +348,7 @@ this["Handlebars"]["templates"]["param_list"] = Handlebars.template({"1":functio
     + "'>\n    <div>\n        <select ";
   stack1 = ((helpers.isArray || (depth0 && depth0.isArray) || helperMissing).call(depth0, depth0, {"name":"isArray","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data}));
   if (stack1 != null) { buffer += stack1; }
-  buffer += " class='parameter form-control' name='"
+  buffer += " class='parameter ui-form-control' name='"
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
     + "'  data-toggle=\"tooltip\" data-placement=\"right\" title=\"\" data-original-title='"
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
@@ -366,7 +366,7 @@ this["Handlebars"]["templates"]["param_list"] = Handlebars.template({"1":functio
 },"useData":true});
 this["Handlebars"]["templates"]["param_readonly_required"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-  return "            <textarea class='body-textarea form-control' readonly='readonly' placeholder='(required)' name='"
+  return "            <textarea class='body-textarea ui-form-control' readonly='readonly' placeholder='(required)' name='"
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
     + "'  data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title='"
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
@@ -407,7 +407,7 @@ this["Handlebars"]["templates"]["param_readonly_required"] = Handlebars.template
 },"useData":true});
 this["Handlebars"]["templates"]["param_readonly"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-  return "            <textarea class='body-textarea form-control' readonly='readonly' name='"
+  return "            <textarea class='body-textarea ui-form-control' readonly='readonly' name='"
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
     + "'  data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title='"
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
@@ -463,7 +463,7 @@ this["Handlebars"]["templates"]["param_required"] = Handlebars.template({"1":fun
   return buffer;
 },"5":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-  return "                <textarea class='body-textarea form-control required' placeholder='(required)' name='"
+  return "                <div class=\"editor_holder\"></div>\n                <textarea class='body-textarea ui-form-control required' placeholder='(required)' name='"
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
     + "'  data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title='"
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
@@ -472,11 +472,11 @@ this["Handlebars"]["templates"]["param_required"] = Handlebars.template({"1":fun
     + "</textarea>\n                <div class=\"parameter-content-type\"/>\n";
 },"7":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-  return "                <textarea class='body-textarea form-control required' placeholder='(required)' name='"
+  return "                <textarea class='body-textarea ui-form-control required' placeholder='(required)' name='"
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
     + "' data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title='"
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
-    + "'></textarea>\n                <div class=\"parameter-content-type\"/>\n";
+    + "'></textarea>\n                <div class=\"editor_holder\"></div>\n                <br/>\n                <div class=\"parameter-content-type\"/>\n";
 },"9":function(depth0,helpers,partials,data) {
   var stack1, buffer = "";
   stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.isFile : depth0), {"name":"if","hash":{},"fn":this.program(10, data),"inverse":this.program(12, data),"data":data});
@@ -484,7 +484,7 @@ this["Handlebars"]["templates"]["param_required"] = Handlebars.template({"1":fun
   return buffer;
 },"10":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-  return "            <input class='parameter form-control required' type='file' name='"
+  return "            <input class='parameter ui-form-control required' type='file' name='"
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
     + "'/>\n";
 },"12":function(depth0,helpers,partials,data) {
@@ -494,7 +494,7 @@ this["Handlebars"]["templates"]["param_required"] = Handlebars.template({"1":fun
   return buffer;
 },"13":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-  return "                <input class='parameter form-control required' minlength='1' name='"
+  return "                <input class='parameter ui-form-control required' minlength='1' name='"
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
     + "' placeholder='(required)' type='"
     + escapeExpression(((helper = (helper = helpers.inputType || (depth0 != null ? depth0.inputType : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"inputType","hash":{},"data":data}) : helper)))
@@ -505,7 +505,7 @@ this["Handlebars"]["templates"]["param_required"] = Handlebars.template({"1":fun
     + "'/>\n";
 },"15":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-  return "                <input class='parameter form-control required' minlength='1' name='"
+  return "                <input class='parameter ui-form-control required' minlength='1' name='"
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
     + "' placeholder='(required)' type='"
     + escapeExpression(((helper = (helper = helpers.inputType || (depth0 != null ? depth0.inputType : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"inputType","hash":{},"data":data}) : helper)))
@@ -554,7 +554,7 @@ this["Handlebars"]["templates"]["param"] = Handlebars.template({"1":function(dep
   return buffer;
 },"5":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-  return "                <textarea class='body-textarea form-control' name='"
+  return "                <div class=\"editor_holder\"></div>\n\n                <textarea class='body-textarea ui-form-control' name='"
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
     + "' data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title='"
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
@@ -563,11 +563,11 @@ this["Handlebars"]["templates"]["param"] = Handlebars.template({"1":function(dep
     + "</textarea>\n                <div class=\"parameter-content-type\"/>\n";
 },"7":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-  return "                <textarea class='body-textarea form-control' name='"
+  return "                <textarea class='body-textarea ui-form-control' name='"
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
     + "' data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title='"
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
-    + "'></textarea>\n                <div class=\"parameter-content-type\"/>\n";
+    + "'></textarea>\n                <div class=\"editor_holder\"></div>\n                <div class=\"parameter-content-type\"/>\n";
 },"9":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
   return "                <code class=\"code-signature\">"
@@ -595,7 +595,7 @@ this["Handlebars"]["templates"]["param"] = Handlebars.template({"1":function(dep
   return buffer;
 },"15":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-  return "                <input class='parameter form-control' minlength='0' name='"
+  return "                <input class='parameter ui-form-control' minlength='0' name='"
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
     + "' placeholder='' type='"
     + escapeExpression(((helper = (helper = helpers.inputType || (depth0 != null ? depth0.inputType : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"inputType","hash":{},"data":data}) : helper)))
@@ -606,7 +606,7 @@ this["Handlebars"]["templates"]["param"] = Handlebars.template({"1":function(dep
     + "'/>\n";
 },"17":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-  return "                <input class='parameter form-control' minlength='0' name='"
+  return "                <input class='parameter ui-form-control' minlength='0' name='"
     + escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"name","hash":{},"data":data}) : helper)))
     + "' placeholder='' type='"
     + escapeExpression(((helper = (helper = helpers.inputType || (depth0 != null ? depth0.inputType : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"inputType","hash":{},"data":data}) : helper)))
@@ -639,7 +639,7 @@ this["Handlebars"]["templates"]["parameter_content_type"] = Handlebars.template(
 },"4":function(depth0,helpers,partials,data) {
   return "            <option value=\"application/json\">application/json</option>\n";
   },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "<div>\n    <label for=\"parameterContentType\">Content type:</label>\n    <select class=\"parameter form-control\" name=\"parameterContentType\">\n";
+  var stack1, buffer = "<div>\n    <label for=\"parameterContentType\">Content type:</label>\n    <select class=\"parameter ui-form-control\" name=\"parameterContentType\">\n";
   stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.consumes : depth0), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.program(4, data),"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "    </select>\n</div>\n";
@@ -666,7 +666,7 @@ this["Handlebars"]["templates"]["response_content_type"] = Handlebars.template({
 },"4":function(depth0,helpers,partials,data) {
   return "                    <option value=\"application/json\">application/json</option>\n";
   },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "<div class=\"parameter-item\">\n    <div class=\"param-property hide\" data-label=\"name\">Response Type</div>\n    <div class=\"param-property\" data-label=\"Response Type\">\n        <div>\n            <select class=\"parameter form-control\" name=\"responseContentType\">\n";
+  var stack1, buffer = "<div class=\"parameter-item\">\n    <div class=\"param-property hide\" data-label=\"name\">Response Type</div>\n    <div class=\"param-property\" data-label=\"Response Type\">\n        <div>\n            <select class=\"parameter ui-form-control\" name=\"responseContentType\">\n";
   stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.produces : depth0), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.program(4, data),"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "            </select>\n        </div>\n    </div>\n</div>\n\n";
@@ -20817,6 +20817,14 @@ window.SwaggerUi = Backbone.Router.extend({
       return that.updateSwaggerUi(data);
     });
     */
+    //JSon Editor custom theming
+    JSONEditor.defaults.iconlibs.swagger = JSONEditor.AbstractIconLib.extend({
+      mapping: {
+        collapse: 'collapse',
+        expand: 'expand'
+      },
+      icon_prefix: 'swagger-'
+    });
   },
 
   // Set an option after initializing
@@ -21283,6 +21291,14 @@ SwaggerUi.Views.MainView = Backbone.View.extend({
         this.model.validatorUrl = window.location.protocol + '//online.swagger.io/validator';
       }
     }
+    // JSonEditor requires type='object' to be present on defined types, we add it if it's missing
+    // is there any valid case were it should not be added ?
+    var def;
+    for(def in this.model.definitions){
+      if (!this.model.definitions[def].type){
+        this.model.definitions[def].type = 'object';
+      }
+    }
   },
 
   render: function () {
@@ -21343,6 +21359,10 @@ SwaggerUi.Views.MainView = Backbone.View.extend({
   addResource: function (resource, auths) {
     // Render a resource and add it to resources li
     resource.id = resource.id.replace(/\s/g, '_');
+
+    // Make all definitions available at the root of the resource so that they can
+    // be loaded by the JSonEditor
+    resource.definitions = this.model.definitions;
     var resourceView = new SwaggerUi.Views.ResourceView({
       model: resource,
       router: this.router,
@@ -21615,7 +21635,23 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
         id: this.parentId + '_' + this.nickname
       };
     }
+
+    contentTypeModel = {
+      isParam: false
+    };
+    contentTypeModel.consumes = this.model.consumes;
+    contentTypeModel.produces = this.model.produces;
+
     $(this.el).html(Handlebars.templates.operation(this.model));
+
+    ref4 = this.model.parameters;
+    for (p = 0, len3 = ref4.length; p < len3; p++) {
+      param = ref4[p];
+      this.addParameter(param, contentTypeModel.consumes);
+      if (param.paramType === 'body' || param.in === 'body') {
+        this.addBodyModel(param)
+      }
+    }
     if (signatureModel) {
       responseSignatureView = new SwaggerUi.Views.SignatureView({
         model: signatureModel,
@@ -21627,14 +21663,9 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
       $('.model-signature', $(this.el)).append(responseSignatureView.render().el);
     } else {
       this.model.responseClassSignature = 'string';
-      $('.model-signature', $(this.el)).html(this.model.type);
+      $('.model-signature', $(this.el)).append(this.model.type);
     }
 
-    contentTypeModel = {
-      isParam: false
-    };
-    contentTypeModel.consumes = this.model.consumes;
-    contentTypeModel.produces = this.model.produces;
     ref3 = this.model.parameters;
     for (n = 0, len2 = ref3.length; n < len2; n++) {
       param = ref3[n];
@@ -21664,16 +21695,6 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
 
     $('.response-content-type', $(this.el)).append(responseContentTypeView.render().el);
 
-    ref4 = this.model.parameters;
-    for (p = 0, len3 = ref4.length; p < len3; p++) {
-      param = ref4[p];
-      this.addParameter(param, contentTypeModel.consumes);
-      if (param.paramType === 'body' || param.in === 'body') {
-        this.addBodyModel(param)
-      }
-    }
-
-
     ref5 = this.model.responseMessages;
     for (q = 0, len4 = ref5.length; q < len4; q++) {
       statusCode = ref5[q];
@@ -21701,12 +21722,29 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
   addParameter: function (param, consumes) {
     // Render a parameter
     param.consumes = consumes;
+    // Copy this param JSON spec so that it will be available for JsonEditor
+    if(param.schema){
+      $.extend(true, param.schema, this.model.definitions[param.type]);
+      param.schema.definitions = this.model.definitions;
+      // This is required for JsonEditor to display the root properly
+      if(!param.schema.type){
+        param.schema.type = 'object';
+      }
+      // This is the title that will be used by JsonEditor for the root
+      // Since we already display the parameter's name in the Parameter column
+      // We set this to space, we can't set it to null or space otherwise JsonEditor
+      // will replace it with the text "root" which won't look good on screen
+      if(!param.schema.title){
+        param.schema.title = ' ';
+      }
+    }
     var paramView = new SwaggerUi.Views.ParameterView({
       model: param,
       tagName: 'div',
       className: 'parameter-item',
-      readOnly: this.model.isReadOnly
-    });
+      readOnly: this.model.isReadOnly,
+      swaggerOptions: this.options.swaggerOptions
+  });
     $('.operation-params', $(this.el)).append(paramView.render().el);
   },
 
@@ -21729,7 +21767,7 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
     }
     form = $('.sandbox', $(this.el));
     error_free = true;
-    form.find('input.required').each(function () {
+    form.find('input.required:visible').each(function () {
       $(this).removeClass('error');
       if (jQuery.trim($(this).val()) === '') {
         $(this).addClass('error');
@@ -21789,6 +21827,14 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
           map[o.name] = val;
         }
       }
+      var pi;
+      for(pi = 0; pi < this.model.parameters.length; pi++){
+        var p = this.model.parameters[pi];
+        if( p.jsonEditor && p.jsonEditor.isEnabled()){
+          var json = p.jsonEditor.getValue();
+          map[p.name] = JSON.stringify(json);
+        }
+      }
       opts.responseContentType = $('div select[name=responseContentType]', $(this.el)).val();
       opts.requestContentType = $('div select[name=parameterContentType]', $(this.el)).val();
       $(".submit", $(this.el)).button("loading");
@@ -21845,7 +21891,7 @@ SwaggerUi.Views.OperationView = Backbone.View.extend({
     this.invocationUrl = this.model.supportHeaderParams() ? (headerParams = this.model.getHeaderParams(map), delete headerParams['Content-Type'], this.model.urlify(map, false)) : this.model.urlify(map, true);
     $('.request_url', $(this.el)).html('<pre></pre>');
     $('.request_url pre', $(this.el)).text(this.invocationUrl);
-    
+
     var clientAuths = window.swaggerUi.api.clientAuthorizations;
     if (typeof clientAuths !== 'undefined' && typeof(clientAuths.authz) !== 'undefined') {
       _.forEach(clientAuths.authz, function(auth, key) {
@@ -22188,6 +22234,31 @@ SwaggerUi.Views.ParameterContentTypeView = Backbone.View.extend({
 
 });
 'use strict';
+/*
+ * [TODO] defaultProperties is not take in the required properties into consideration, this implementation respects the specs of JSON Editor v0.7.22
+  {
+   {
+     "type": "object",
+     "properties": {
+     "name": {"type": "string"},
+     "age": {"type": "integer"}
+   },
+   defaultProperties": ["name"]
+  }
+ */
+function setDefaultProperties(obj) {
+  if (obj instanceof Object) {
+    for (var k in obj){
+      if(obj.hasOwnProperty("type") && obj.type == "object") {
+        obj.defaultProperties = obj.required ? obj.required : [];
+      }
+      // recursive call to setDefaultProperties
+      setDefaultProperties( obj[k] );
+    }
+  } else {
+    // not an Object, break the recursion.
+  };
+}
 
 SwaggerUi.Views.ParameterView = Backbone.View.extend({
   initialize: function(){
@@ -22217,7 +22288,6 @@ SwaggerUi.Views.ParameterView = Backbone.View.extend({
 
     this.model.type = type;
     this.model.paramType = this.model.in || this.model.paramType;
-    console.log('paratype: ', this.model)
     this.model.isBody = this.model.paramType === 'body' || this.model.in === 'body';
     this.model.isFile = type && type.toLowerCase() === 'file';
     this.model.default = (this.model.default || this.model.defaultValue);
@@ -22235,7 +22305,47 @@ SwaggerUi.Views.ParameterView = Backbone.View.extend({
     var template = this.template();
     $(this.el).html(template(this.model));
 
+    var signatureModel = {
+      sampleJSON: this.model.sampleJSON,
+      isParam: true,
+      signature: this.model.signature,
+      defaultRendering: this.model.defaultRendering
+    };
+
     var isParam = false;
+
+    if( this.options.swaggerOptions.jsonEditor && this.model.isBody && this.model.schema){
+      var jsonEditorOptions = this.options.swaggerOptions.jsonEditorOptions;
+      var $self = $(this.el);
+      if (jsonEditorOptions && jsonEditorOptions.noDefaultProperties) setDefaultProperties(this.model.schema);
+      this.model.jsonEditor =
+        /* global JSONEditor */
+          new JSONEditor($('.editor_holder', $self)[0],
+              {schema: this.model.schema, startval : this.model.default,
+                ajax:true,
+                disable_properties:jsonEditorOptions && jsonEditorOptions.disableProperties,
+                disable_edit_json:jsonEditorOptions && jsonEditorOptions.disableEditJson,
+                remove_empty_properties:jsonEditorOptions && jsonEditorOptions.removeEmptyProperties,
+                iconlib: 'swagger' });
+      // This is so that the signature can send back the sample to the json editor
+      // TODO: SignatureView should expose an event "onSampleClicked" instead
+      signatureModel.jsonEditor = this.model.jsonEditor;
+      $('.body-textarea', $self).hide();
+      $('.editor_holder', $self).show();
+      $('.parameter-content-type', $self)
+        .change(function(e){
+          if(e.target.value === 'application/xml'){
+            $('.body-textarea', $self).show();
+            $('.editor_holder', $self).hide();
+            this.model.jsonEditor.disable();
+          }
+          else {
+            $('.body-textarea', $self).hide();
+            $('.editor_holder', $self).show();
+            this.model.jsonEditor.enable();
+          }
+        });
+    }
 
     if (this.model.isBody) {
       isParam = true;
@@ -22316,6 +22426,8 @@ SwaggerUi.Views.ResourceView = Backbone.View.extend({
 
       operation.nickname = id;
       operation.parentId = this.model.id;
+      operation.definitions = this.model.definitions; // make Json Schema available for JSonEditor in this operation
+
       this.addOperation(operation);
     }
 
@@ -22495,6 +22607,10 @@ SwaggerUi.Views.SignatureView = Backbone.View.extend({
       var textArea = $('textarea', $(this.el.parentNode.parentNode.parentNode));
       if ($.trim(textArea.val()) === '') {
         textArea.val(this.model.sampleJSON);
+         // TODO move this code outside of the view and expose an event instead
+         if( this.model.jsonEditor && this.model.jsonEditor.isEnabled()){
+            this.model.jsonEditor.setValue(JSON.parse(this.model.sampleJSON));
+         }
       }
     }
   }
