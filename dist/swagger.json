@@ -15,20 +15,6 @@
   },
   "host": "stayes.com",
   "basePath": "/api",
-  "apis": [
-    {
-      "name": "Favorites",
-      "description": "Everything about your Pets"
-    },
-    {
-      "name": "store",
-      "description": "Access to Petstore orders"
-    },
-    {
-      "name": "User",
-      "description": "Operations about user"
-    }
-  ],
   "schemes": [
     "https"
   ],
@@ -39,7 +25,7 @@
         "tags": [
           "favorites"
         ],
-        "summary": "로그인된 사용자의 위시리스트 목록을 받음",
+        "summary": "위시리스트 목록",
         "description": "tab을 추가해서 넣으면 term 종류별로 가려받을 수도 있음.",
         "produces": [
           "application/json"
@@ -70,7 +56,10 @@
             }
           }
         }
-      },
+      }
+    },
+
+    "/favorites/new": {
       "post": {
         "tags": [
           "favorites"
