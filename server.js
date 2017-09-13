@@ -2,6 +2,7 @@
 
 var path = require('path');
 var express = require('express');
+var cors = require('cors');
 var cluster = require('cluster');
 
 var WORKERS = process.env.WEB_CONCURRENCY || 1;
@@ -16,6 +17,7 @@ if (cluster.isMaster) {
   });
 } else {
   var app = express();
+  app.use(cors());
   app.use(express.static(path.join(__dirname, '/dist')));
   app.listen(process.env.PORT || 8080);
 }
