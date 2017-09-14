@@ -19,6 +19,138 @@
     "https"
   ],
   "paths": {
+    "/register": {
+      "post": {
+        "tags": [
+          "sessions"
+        ],
+        "summary": "회원가입",
+        "description": "이메일과 비밀번호, FCM 토큰을 보내면 가입 및 로그인",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "description": "사용자 이메일",
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "사용자 비밀번호",
+            "type": "string"
+          },
+          {
+            "name": "fcm_token",
+            "in": "query",
+            "description": "FCM TOKEN",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "sessions"
+        ],
+        "summary": "로그인",
+        "description": "이메일과 비밀번호, FCM 토큰을 보내면 로그인",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "description": "사용자 이메일",
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "사용자 비밀번호",
+            "type": "string"
+          },
+          {
+            "name": "fcm_token",
+            "in": "query",
+            "description": "FCM TOKEN",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "tags": [
+          "sessions"
+        ],
+        "summary": "로그아웃",
+        "description": "login_token을 넣으면 해당 사용자 로그아웃",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "login_token",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/reset_password": {
+      "post": {
+        "tags": [
+          "sessions"
+        ],
+        "summary": "패스워드 초기화",
+        "description": "login 토큰을 보내면 비밀번호 초기화",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "login_token",
+            "in": "query",
+            "description": "Login Token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+
 
     "/favorites": {
       "get": {
@@ -84,12 +216,11 @@
             "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "Pet not found"
+            "description": "Wishlist not found"
           }
         }
       }
     },
-
     "/favorites/new": {
       "post": {
         "tags": [
@@ -122,59 +253,6 @@
       }
     },
 
-    "/pet/findByStatus": {
-      "get": {
-        "tags": [
-          "pet"
-        ],
-        "summary": "Finds Pets by status",
-        "description": "Multiple status values can be provided with comma seperated strings",
-        "operationId": "findPetsByStatus",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "status",
-            "in": "query",
-            "description": "Status values that need to be considered for filter",
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "available",
-                "pending",
-                "sold"
-              ]
-            },
-            "collectionFormat": "multi"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Pet"
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid status value"
-          }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
-          }
-        ]
-      }
-    },
     "/pet/findByTags": {
       "get": {
         "tags": [
@@ -847,6 +925,15 @@
 
 
   "definitions": {
+
+    "Login": {
+      "type": "object",
+      "properties": {
+        "login_token": {
+          "type": "string"
+        }
+      }
+    },
     "Favorite": {
       "type": "object",
       "properties": {
