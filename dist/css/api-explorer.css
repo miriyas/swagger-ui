@@ -286,7 +286,7 @@
 @media (min-width: 992px) {
     .swagger-section .parameter-item .param-property {
         position: relative;
-        padding-left: 150px
+        padding-left: 230px
     }
 
     .swagger-section .parameter-item .param-property:hover {
@@ -310,7 +310,7 @@
         top: 28px;
         left: 0;
         display: inline-block;
-        width: 150px;
+        width: 230px;
         vertical-align: top;
         text-align: right;
         padding: 0 20px
