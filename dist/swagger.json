@@ -22,7 +22,7 @@
     "/register": {
       "post": {
         "tags": [
-          "sessions"
+          "Sessions"
         ],
         "summary": "회원가입",
         "description": "이메일과 비밀번호, FCM 토큰을 보내면 가입 및 로그인",
@@ -62,7 +62,7 @@
     "/login": {
       "post": {
         "tags": [
-          "sessions"
+          "Sessions"
         ],
         "summary": "로그인",
         "description": "이메일과 비밀번호, FCM 토큰을 보내면 로그인",
@@ -102,7 +102,7 @@
     "/logout": {
       "get": {
         "tags": [
-          "sessions"
+          "Sessions"
         ],
         "summary": "로그아웃",
         "description": "login_token을 넣으면 해당 사용자 로그아웃",
@@ -128,7 +128,7 @@
     "/reset_password": {
       "post": {
         "tags": [
-          "sessions"
+          "Sessions"
         ],
         "summary": "패스워드 초기화",
         "description": "login 토큰을 보내면 비밀번호 초기화",
@@ -150,10 +150,11 @@
         }
       }
     },
+
     "/homes": {
       "get": {
         "tags": [
-          "homes"
+          "Home"
         ],
         "summary": "첫화면",
         "description": "첫화면을 뿌려주는데 필요한 값을 전송",
@@ -180,6 +181,173 @@
             "schema": {
               "$ref": "#/definitions/Home"
             }
+          }
+        }
+      }
+    },
+    "/homes/recommendation/{id}": {
+      "get": {
+        "tags": [
+          "Home"
+        ],
+        "summary": "추천 상품 페이지",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "불러올 추천 상품 페이지 id",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Product"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chats": {
+      "get": {
+        "tags": [
+          "Chat"
+        ],
+        "summary": "채팅 페이지",
+        "description": "채팅 유형 구분, 커스텀 메시지를 위한 유형 구분, 커스텀 메시지를 위한 객실 및 예약 관련 url, 커스텀 메시지를 위한 객실 id 등을 받아서 채팅 창을 뿌려줌.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "login_token",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Chat"
+            }
+          }
+        }
+      }
+    },
+    "/chats/product/{id}": {
+      "get": {
+        "tags": [
+          "Chat"
+        ],
+        "summary": "카드형 객실 커스텀메시지 정보",
+        "description": "위시리스트로 등록된 객실 정보(카드형)",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "login_token",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        }
+      }
+    },
+    "/chats/reservation/{id}": {
+      "get": {
+        "tags": [
+          "Chat"
+        ],
+        "summary": "카드형 예약 커스텀메시지 정보",
+        "description": "위시리스트로 등록된 객실 정보(카드형)",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "login_token",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/EnterRequest"
+            }
+          }
+        }
+      }
+    },
+    "/chats/bot_message": {
+      "post": {
+        "tags": [
+          "Chat"
+        ],
+        "summary": "영업시간외 알림 봇 메시지",
+        "description": "센드버드API",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "login_token",
+            "in": "query",
+            "description": "Login Token",
+            "type": "string"
+          },
+          {
+            "name": "channel_url",
+            "in": "query",
+            "description": "영업외 시간 알림을 전송할 채널 url",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
           }
         }
       }
@@ -304,22 +472,6 @@
           "items": {
             "$ref": "#/definitions/Product"
           }
-        },
-        "user_id": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "product_id": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updated_at": {
-          "type": "string",
-          "format": "date-time"
         }
       }
     },
@@ -344,11 +496,67 @@
           "type": "number",
           "format": "double"
         },
+        "commissions": {
+          "type": "number",
+          "format": "double"
+        },
+        "name_for_user": {
+          "type": "string"
+        },
         "room_type_category": {
           "type": "string"
         },
         "room_type_types": {
           "type": "string"
+        },
+        "main_subway_name": {
+          "type": "string"
+        },
+        "minimum_days_text": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Chat": {
+      "type": "object",
+      "properties": {
+        "chat_type": {
+          "type": "string"
+        },
+        "custom_type": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "instance_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "EnterRequest": {
+      "type": "object",
+      "properties": {
+        "request_checkin_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "request_checkout_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "product": {
+          "$ref": "#/definitions/Product"
         },
         "created_at": {
           "type": "string",
