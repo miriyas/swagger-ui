@@ -26,7 +26,7 @@
           "favorites"
         ],
         "summary": "위시리스트 목록",
-        "description": "tab을 추가해서 넣으면 term 종류별로 가려받을 수도 있음.",
+        "description": "user_id는 서버에서 판단. tab을 추가해서 넣으면 term 종류별로 가려받을 수도 있음.",
         "produces": [
           "application/json"
         ],
@@ -56,6 +56,37 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": [
+          "favorites"
+        ],
+        "summary": "위시리스트 삭제",
+        "description": "해당 id의 favorite를 삭제",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "삭제할 favorite의 id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Pet not found"
+          }
+        }
       }
     },
 
@@ -65,7 +96,7 @@
           "favorites"
         ],
         "summary": "위시리스트 추가",
-        "description": "방 아이디와 사용자 아이디를 입력하면 위시리스트를 생성함.",
+        "description": "방 아이디를 입력하면 현재 사용자의 위시리스트를 생성함.",
         "produces": [
           "application/json"
         ],
@@ -74,12 +105,6 @@
             "name": "product_id",
             "in": "query",
             "description": "위시리스트 추가할 방 아이디",
-            "type": "integer"
-          },
-          {
-            "name": "user_id",
-            "in": "query",
-            "description": "위시리스트를 등록한 사용자 아이디",
             "type": "integer"
           }
         ],
