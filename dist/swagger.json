@@ -315,7 +315,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/EnterRequest"
+              "$ref": "#/definitions/EnterRequestModel"
             }
           }
         }
@@ -598,13 +598,130 @@
             "description": "문의 정보 object",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/EnterRequest"
+              "$ref": "#/definitions/EnterRequestModel"
             }
           }
         ],
         "responses": {
           "200": {
             "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/products/{product_id}/reservations/{id}/edit": {
+      "get": {
+        "tags": [
+          "Reservation"
+        ],
+        "summary": "예약문의 페이지",
+        "description": "거주자정보 입력 화면 그려줄 때 사용",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "product_id",
+            "in": "path",
+            "required": true,
+            "description": "예약가능여부를 확인할 방 아이디",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "이전 예약가능여부 확인한 EnterRequest 아이디",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "login_token",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EnterRequestModel"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{product_id}/reservations/{id}": {
+      "patch": {
+        "tags": [
+          "Reservation"
+        ],
+        "summary": "예약문의 처리",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "product_id",
+            "in": "path",
+            "required": true,
+            "description": "예약가능여부를 확인할 방 아이디",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "이전 예약가능여부 확인한 EnterRequest 아이디",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "login_token",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "contractors",
+            "in": "body",
+            "required": true,
+            "description": "거주자 정보 및 추가 거주자 정보 array",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Contractor"
+              }
+            }
+          },
+          {
+            "name": "enter_request",
+            "in": "body",
+            "description": "문의 정보 object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EnterRequestModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EnterRequestModel"
+              }
+            }
           }
         }
       }
@@ -766,6 +883,14 @@
           "type": "number",
           "format": "double"
         },
+        "contract_fee": {
+          "type": "number",
+          "format": "double"
+        },
+        "total_fee": {
+          "type": "number",
+          "format": "double"
+        },
         "name_for_user": {
           "type": "string"
         },
@@ -816,7 +941,39 @@
         }
       }
     },
-    "EnterRequest": {
+    "EnterRequestModel": {
+      "title": "EnterRequestModel",
+      "type": "object",
+      "properties": {
+        "pet_available": {
+          "type": "boolean"
+        },
+        "parking_lot_present": {
+          "type": "boolean"
+        },
+        "product": {
+          "$ref": "#/definitions/ProductModel"
+        },
+        "reqest_info": {
+          "$ref": "#/definitions/RequestInfo"
+        },
+        "user_info": {
+          "$ref": "#/definitions/UserInfo"
+        },
+        "payment_info": {
+          "$ref": "#/definitions/PaymentInfo"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "RequestInfo": {
       "type": "object",
       "properties": {
         "request_checkin_date": {
@@ -838,22 +995,39 @@
         "request_body": {
           "type": "string"
         },
-        "pet_available": {
-          "type": "boolean"
+        "request_product_ids": {
+          "type": "string"
         },
-        "parking_lot_present": {
-          "type": "boolean"
+        "request_destination": {
+          "type": "string"
+        }
+      }
+    },
+    "UserInfo": {
+      "type": "object",
+      "properties": {
+        "user_language": {
+          "type": "string"
         },
-        "product": {
-          "$ref": "#/definitions/ProductModel"
+        "user_name": {
+          "type": "string"
         },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
+        "user_email": {
+          "type": "string"
+        }
+      }
+    },
+    "PaymentInfo": {
+      "type": "object",
+      "properties": {
+        "payment_service_fee_type": {
+          "type": "string"
         },
-        "updated_at": {
-          "type": "string",
-          "format": "date-time"
+        "payment_brokerage_type": {
+          "type": "string"
+        },
+        "payment_balance_fee": {
+          "type": "string"
         }
       }
     },
@@ -861,10 +1035,27 @@
       "type": "object",
       "properties": {
         "previous_enter_request": {
-          "$ref": "#/definitions/EnterRequest"
+          "$ref": "#/definitions/EnterRequestModel"
         },
         "product": {
           "$ref": "#/definitions/ProductModel"
+        }
+      }
+    },
+    "Contractor": {
+      "type": "object",
+      "properties": {
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "country_code": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
         }
       }
     },
