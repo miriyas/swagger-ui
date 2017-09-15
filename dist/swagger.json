@@ -211,7 +211,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/Product"
+                "$ref": "#/definitions/ProductModel"
               }
             }
           }
@@ -278,7 +278,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/Product"
+              "$ref": "#/definitions/ProductModel"
             }
           }
         }
@@ -352,7 +352,7 @@
         }
       }
     },
-    "products/search": {
+    "/products/search": {
       "get": {
         "tags": [
           "Search"
@@ -519,9 +519,92 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/Product"
+                "$ref": "#/definitions/ProductModel"
               }
             }
+          }
+        }
+      }
+    },
+    "/products/{id}/inquires/new": {
+      "get": {
+        "tags": [
+          "Inquire"
+        ],
+        "summary": "예약가능여부 확인",
+        "description": "해당 방의 예약가능여부 확인 신청 페이지 그려줄때 사용.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "예약가능여부를 확인할 방 아이디",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "login_token",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/NewInquire"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{id}/inquires": {
+      "post": {
+        "tags": [
+          "Inquire"
+        ],
+        "summary": "예약가능여부 문의 처리",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "예약가능여부를 확인할 방 아이디",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "login_token",
+            "in": "query",
+            "required": true,
+            "description": "Login Token",
+            "type": "string"
+          },
+          {
+            "name": "enter_request",
+            "in": "body",
+            "description": "문의 정보 object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EnterRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
           }
         }
       }
@@ -644,12 +727,13 @@
         "recently_seens": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Product"
+            "$ref": "#/definitions/ProductModel"
           }
         }
       }
     },
-    "Product": {
+    "ProductModel": {
+      "title": "ProductModel",
       "type": "object",
       "properties": {
         "id": {
@@ -666,7 +750,15 @@
           "type": "number",
           "format": "double"
         },
+        "monthly_amount_local_currency": {
+          "type": "number",
+          "format": "double"
+        },
         "monthly_result_amount_local_currency": {
+          "type": "number",
+          "format": "double"
+        },
+        "due": {
           "type": "number",
           "format": "double"
         },
@@ -689,6 +781,12 @@
         "minimum_days_text": {
           "type": "integer",
           "format": "int32"
+        },
+        "pet_available": {
+          "type": "boolean"
+        },
+        "parking_lot_present": {
+          "type": "boolean"
         },
         "created_at": {
           "type": "string",
@@ -729,8 +827,25 @@
           "type": "string",
           "format": "date-time"
         },
+        "number_of_man": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "number_of_woman": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "request_body": {
+          "type": "string"
+        },
+        "pet_available": {
+          "type": "boolean"
+        },
+        "parking_lot_present": {
+          "type": "boolean"
+        },
         "product": {
-          "$ref": "#/definitions/Product"
+          "$ref": "#/definitions/ProductModel"
         },
         "created_at": {
           "type": "string",
@@ -739,6 +854,17 @@
         "updated_at": {
           "type": "string",
           "format": "date-time"
+        }
+      }
+    },
+    "NewInquire": {
+      "type": "object",
+      "properties": {
+        "previous_enter_request": {
+          "$ref": "#/definitions/EnterRequest"
+        },
+        "product": {
+          "$ref": "#/definitions/ProductModel"
         }
       }
     },
