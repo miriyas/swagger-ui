@@ -1968,7 +1968,7 @@ body {
 
 .swagger-section .swagger-ui-wrap ul#resources {
     font-family: proxima-nova, sans-serif;
-    font-size: 15px
+    font-size: 15px;
 }
 
 .action-summary p {
