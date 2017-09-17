@@ -1078,6 +1078,46 @@
         }
       }
     },
+    "/users/{user_id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "현재 사용자 정보 불러오기 - 필요할때 사용",
+        "description": "token이 일치해야 함.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "login_token",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserModel"
+              }
+            }
+          }
+        }
+      }
+    },
     "/users/{id}/update_name": {
       "patch": {
         "tags": [
@@ -1172,6 +1212,110 @@
             "description": "",
             "type": "integer",
             "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserModel"
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}/notification": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "사용자 푸시설정 수정",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "login_token",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "push_update",
+            "in": "query",
+            "required": true,
+            "description": "업데이트 관련 푸시설정값",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "push_message",
+            "in": "query",
+            "required": true,
+            "description": "메시지 관련 푸시 설정값",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserModel"
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}/update_locale": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "사용자 언어 및 화폐 단위 수정",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "login_token",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "string"
           }
         ],
         "responses": {
@@ -1476,6 +1620,9 @@
           "type": "integer",
           "format": "int32"
         },
+        "profile_url": {
+          "type": "string"
+        },
         "email": {
           "type": "string"
         },
@@ -1498,6 +1645,12 @@
           "type": "string"
         },
         "gender": {
+          "type": "string"
+        },
+        "push_update": {
+          "type": "string"
+        },
+        "push_message": {
           "type": "string"
         }
       }
