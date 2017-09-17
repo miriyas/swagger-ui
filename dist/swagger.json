@@ -352,6 +352,36 @@
         }
       }
     },
+    "/products/{id}": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "객실 보기 페이지",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ProductModel"
+            }
+          }
+        }
+      }
+    },
     "/products/search": {
       "get": {
         "tags": [
@@ -566,6 +596,60 @@
         }
       }
     },
+    "/users/{user_id}/inquires": {
+      "get": {
+        "tags": [
+          "Inquire"
+        ],
+        "summary": "예약가능여부 문의 목록 페이지",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "login_token",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "** 이게 굳이 있어야 할 이유는 모르겠음",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EnterRequestModel"
+              }
+            }
+          }
+        }
+      }
+    },
     "/products/{id}/inquires": {
       "post": {
         "tags": [
@@ -605,6 +689,51 @@
         "responses": {
           "200": {
             "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/users/{user_id}/inquires/{id}": {
+      "get": {
+        "tags": [
+          "Inquire"
+        ],
+        "summary": "예약가능여부 문의 상세 페이지",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "login_token",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/EnterRequestModel"
+            }
           }
         }
       }
@@ -692,18 +821,6 @@
             "type": "string"
           },
           {
-            "name": "contractors",
-            "in": "body",
-            "required": true,
-            "description": "거주자 정보 및 추가 거주자 정보 array",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Contractor"
-              }
-            }
-          },
-          {
             "name": "enter_request",
             "in": "body",
             "description": "문의 정보 object",
@@ -726,10 +843,106 @@
         }
       }
     },
-    "/favorites": {
+    "/users/{user_id}/reservations": {
       "get": {
         "tags": [
-          "favorites"
+          "Reservation"
+        ],
+        "summary": "예약가능여부 문의 목록 페이지",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "login_token",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "** 이게 굳이 있어야 할 이유는 모르겠음",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/EnterRequestModel"
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}/reservations/{id}": {
+      "get": {
+        "tags": [
+          "Reservation"
+        ],
+        "summary": "예약가능여부 문의 상세 페이지",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "login_token",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/EnterRequestModel"
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}/favorites": {
+      "get": {
+        "tags": [
+          "Favorite"
         ],
         "summary": "위시리스트 목록",
         "description": "user_id는 서버에서 판단. tab을 추가해서 넣으면 term 종류별로 가려받을 수도 있음.",
@@ -738,9 +951,24 @@
         ],
         "parameters": [
           {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "description": "",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "login_token",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
             "name": "tab",
             "in": "query",
-            "description": "longterm / shortterm 골라서 받음",
+            "description": "장단기 옵션값",
             "type": "array",
             "items": {
               "type": "string",
@@ -749,6 +977,52 @@
                 "shortterm"
               ]
             }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "페이지당 표시 개수, ** 이게 필요한지 의문",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Favorite"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/favorites/new": {
+      "post": {
+        "tags": [
+          "Favorite"
+        ],
+        "summary": "위시리스트 추가",
+        "description": "방 아이디를 입력하면 현재 사용자의 위시리스트를 생성함.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "login_token",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "product_id",
+            "in": "query",
+            "required": true,
+            "description": "위시리스트 추가할 방 아이디",
+            "type": "integer"
           }
         ],
         "responses": {
@@ -767,7 +1041,7 @@
     "/favorites/{id}": {
       "delete": {
         "tags": [
-          "favorites"
+          "Favorite"
         ],
         "summary": "위시리스트 삭제",
         "description": "해당 id의 favorite를 삭제",
@@ -776,9 +1050,16 @@
         ],
         "parameters": [
           {
+            "name": "login_token",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
             "name": "id",
             "in": "path",
-            "description": "삭제할 favorite의 id",
+            "description": "삭제할 방 아이디",
             "required": true,
             "type": "integer",
             "format": "int64"
@@ -797,32 +1078,107 @@
         }
       }
     },
-    "/favorites/new": {
-      "post": {
+    "/users/{id}/update_name": {
+      "patch": {
         "tags": [
-          "favorites"
+          "User"
         ],
-        "summary": "위시리스트 추가",
-        "description": "방 아이디를 입력하면 현재 사용자의 위시리스트를 생성함.",
+        "summary": "사용자 이름 수정",
+        "description": "",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "product_id",
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "login_token",
             "in": "query",
-            "description": "위시리스트 추가할 방 아이디",
-            "type": "integer"
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "first_name",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "last_name",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "integer",
+            "format": "int32"
           }
         ],
         "responses": {
           "200": {
             "description": "successful operation",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Favorite"
-              }
+              "$ref": "#/definitions/UserModel"
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}/update_password": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "사용자 비밀번호 수정",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "login_token",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "current_password",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "new_password",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserModel"
             }
           }
         }
@@ -963,6 +1319,31 @@
         "payment_info": {
           "$ref": "#/definitions/PaymentInfo"
         },
+        "contractors": {
+          "description": "reservation 시에만 사용",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Contractor"
+          }
+        },
+        "comments": {
+          "description": "inquire 상세 페이지에서만 사용",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CommentModel"
+          }
+        },
+        "status": {
+          "type": "string"
+        },
+        "request_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "last_contacted_at": {
+          "type": "string",
+          "format": "date-time"
+        },
         "created_at": {
           "type": "string",
           "format": "date-time"
@@ -1012,7 +1393,16 @@
         "user_name": {
           "type": "string"
         },
+        "user_phone": {
+          "type": "string"
+        },
+        "user_birth": {
+          "type": "string"
+        },
         "user_email": {
+          "type": "string"
+        },
+        "user_address": {
           "type": "string"
         }
       }
@@ -1028,6 +1418,16 @@
         },
         "payment_balance_fee": {
           "type": "string"
+        },
+        "payment_contract_fee": {
+          "type": "string"
+        },
+        "payment_contract_fee_option": {
+          "type": "string"
+        },
+        "payment_contract_fee_date": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     },
@@ -1059,6 +1459,49 @@
         }
       }
     },
+    "CommentModel": {
+      "title": "CommentModel",
+      "type": "object",
+      "properties": {
+        "body": {
+          "type": "string"
+        }
+      }
+    },
+    "UserModel": {
+      "title": "UserModel",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "email": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "locale": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        }
+      }
+    },
     "Favorite": {
       "type": "object",
       "properties": {
@@ -1066,13 +1509,8 @@
           "type": "integer",
           "format": "int32"
         },
-        "user_id": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "product_id": {
-          "type": "integer",
-          "format": "int32"
+        "product": {
+          "$ref": "#/definitions/ProductModel"
         },
         "created_at": {
           "type": "string",
